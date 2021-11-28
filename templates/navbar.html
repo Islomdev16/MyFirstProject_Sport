@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Blog</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav id="nav">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa fa-bars"></i>
+        </label>
+        <div class="logop">
+            <p><a href="{% url 'home' %}" style="text-decoration: none;"><span class="text-danger">s</span><i class="text-light">ports<sup style="font-size: 70%;">&trade;</sup></i></a></p>
+            <!-- search section -->
+            <form action="{% url 'search_blog' %}" method="POST" class="d-flex" style="margin-top: 7%;">
+                {% csrf_token %}
+                <input type="search" name="search_blog" class="form-control m-1 text-secondary" placeholder="Search for sports ..." style="width:70%;">
+                <button class="btn btn-primary m-1" type="submit"><i class="fa fa-search "></i></i></button>
+            </form>
+        </div>
+
+        <ul>
+            <li><a href="{% url 'home' %}" class="activing font-weight-bold text-danger">home</a></li>
+            <li><a href="{% url 'about' %}" class="font-weight-bold">about</a></li>
+            <li><a href="{% url 'gallery' %}" class="font-weight-bold">gallery</a></li>
+            <li><a href="{% url 'trainers' %}" class="font-weight-bold">trainers</a></li>
+            <li><a href="{% url 'blog' %}" class="font-weight-bold">blog</a></li>
+            <li><a href="{% url 'news' %} " class="mr-5 font-weight-bold">news</a></li>
+
+            <li>
+                {% if user.is_authenticated %}
+                  <a href="{% url 'profile' %}" class="font-weight-bold btn-warning btn-lg text-light" style="border-radius: 10px;">Profile</a>
+                  <a href="{% url 'logout' %}" class="btn btn-success m-2 text-light font-weight-bold" style="border-radius: 10px;">Logout</a>
+                  <a href="#" class="btn btn-danger text-light font-weight-bold" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                {% else %}
+                  <a href="{% url 'login' %}" class="btn btn-dark m-2 text-light" style="border-radius: 10px;">Sign In</a>
+                  <a href="{% url 'register' %}" class="btn btn-success text-light " style="border-radius: 10px;">Register</a>
+                  <a href="#" class="btn btn-danger text-light" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+</body>
+</html>

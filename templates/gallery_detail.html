@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="card bg-secondary text-white">
+        <img src="{{sporter.image.url}}" class="card-img" alt="" width="1250rem">
+        <div class="card-img-overlay">
+            <a href="{% url 'gallery' %}"> <img src="{% static 'images/close.png' %}" width="50" alt=""> </a>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title">{{sporter.title}}</h5>
+            <h5 class="card-text"><small class="text-warning">Posted on: <b class="text-light">{{sporter.date_posted | date:'F d, Y'}}</span></small></p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

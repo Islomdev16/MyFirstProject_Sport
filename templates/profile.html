@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="bg-light font-weight-bold p-3">
+        <h1 style="margin-left: 40%;">Users' <span class="text-danger">Profile</span> </h1>
+    </div><br><br>
+
+    <div class="page-content page-container" id="page-content">
+    <div class="padding" style="margin-left: 12%;">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-10 col-md-12">
+            {% for profile in profiles %}
+                {% if profile.user == request.user %}
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-warning user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25"><img src="{{user.profile.image.url}}" class="rounded-circle account-img" width="150rem" alt="User-Profile-Image"></div>
+                                <h1 class="f-w-700">{{user.username}}</h1>
+                                <b class="text-info">{{profile.job_title}}</b><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                    <br>
+                                        <b class="m-b-10 f-w-600">Email</b>
+                                        <hr class="my-2" />
+                                        <h6 class="text-muted f-w-400">{{user.email}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <br>
+                                        <b class="m-b-10 f-w-600">Phone</b>
+                                        <hr class="my-2" />
+                                        <h6 class="text-muted f-w-400">{{profile.phone}}</h6>
+                                    </div><br><br><br><br>
+                                    <div class="col-sm-13">
+                                    <br>
+                                        <b class="m-b-10 f-w-700">Biography</b>
+                                        <hr class="my-2" />
+                                        <p class="text-muted f-w-400">{{profile.bio}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="content-section bg-dark pl-5 pr-5 pb-4">
+                    <br><br>
+                    <form action="" method='POST' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group text-light">
+                            {{ u_form | crispy }}
+                            {{ p_form | crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Update</button>
+                        <div>
+                    </form>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

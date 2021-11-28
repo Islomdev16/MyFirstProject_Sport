@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <header class="text-center mb-5">
+        <h1 class="display-4 font-weight-bold">Our Galleries Collect<span class="text-danger">ion</span></h1>
+        <p class="font-italic text-muted mb-0">In our galleries section there are sportsmen, sportswomen and trainers that you can connect with them.</p>
+        <p class="font-italic text-muted">Snippet By
+          <a href="https://sports.uz/oz" class="text-muted"><u class="text-danger">Sports Uz</u></a>
+        </p>
+    </header><hr><br>
+
+    <h2 class="font-weight-bold mb-2">All Uzbek Athletes</h2>
+    <p class="font-italic text-muted mb-4">The pictures below in the gallery section are famous uzbek sport athletes that are participated in Olympic Games.</p>
+
+    <div class="row" style="margin-left: 4%;">
+        {% for sporter in page_obj %}
+        <div class="col-md-6 m-6"><br>
+            <div class="card">
+                <a href="{% url 'gallery_detail' sporter.pk %}"><img src="{{sporter.image.url}}" class="card-img-top" alt="Uzb Trainers Photos"></a>
+                <div class="card-body">
+                    <div id="{{sporter.id}}" class="card-title text-danger">
+                        <h5 class="text-dark" style="text-shadow: 3px 6px 4px grey;">{{sporter.title}}</h5>
+                    </div>
+                    <a href="{% url 'gallery_detail' sporter.pk %}"><button class="btn card-text btn-primary">Full view</button></a>
+
+                    <ul class="social mb-0 list-inline mt-3 d-flex">
+                        {% if request.user.is_authenticated %}
+                            <form action="{% url 'like_gallery' sporter.pk %}" method="POST">
+                                {% csrf_token %}
+                                <button type='submit' name='gallery_id' value="{{sporter.id}}" class="btn btn-sm" style="font-size: 20px;margin-bottom: -2%;"><i class="far fa-thumbs-up text-danger"></i>{{sporter.likes.count}}</button>
+                            </form>
+                            <form action="{% url 'dislike_gallery' sporter.pk %}" method="POST">
+                                {% csrf_token %}
+                                <button type='submit' name='disgallery_id' value="{{sporter.id}}" class="btn btn-sm" style="font-size: 20px;margin-bottom: -2%;"><i class="far fa-thumbs-down text-danger"></i>{{sporter.dislikes.count}}</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'register' %}"><button type='submit' name='gallery_id' value="{{sporter.id}}" class="btn btn-sm" style="font-size: 20px;margin-bottom: -2%;"><i class="far fa-thumbs-up text-danger"></i>{{sporter.likes.count}}</button></a>
+                            <a href="{% url 'register' %}"><button type='submit' name='disgallery_id' value="{{sporter.id}}" class="btn btn-sm" style="font-size: 20px;margin-bottom: -2%;"><i class="far fa-thumbs-down text-danger"></i>{{sporter.dislikes.count}}</button></a>
+                        {% endif %}
+                    </ul>
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{sporter.date_posted | date:"F d, Y H:i"}}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div><br>
+
+    <div class="m-4">
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a href="?page=1" class="page-link bg-danger text-light">First</a></li>
+                <li class="page-item"><a href="?page={{page_obj.previous_page_number}}" class="page-link bg-dark text-light">Previous</a></li>
+                {% endif %}
+
+                {% for i in page_obj.paginator.page_range %}
+                  {% if page_obj.number == i %}
+                    <li class="page-item active"><a href="#" class="page-link">{{i}}</a></li>
+                  {% else %}
+                    <li class="page-item"><a href="?page={{i}}" class="page-link">{{i}}</a></li>
+                  {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item"><a href="?page={{page_obj.next_page_number}}" class="page-link bg-dark text-light">Next</a></li>
+                <li class="page-item"><a href="?page={{page_obj.paginator.num_pages}}" class="page-link bg-success text-light">Last</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div><br>
+    <hr class="text-info">
+    <hr class="text-info"><br><br>
+
+    <h2 class="font-weight-bold mb-2">Our Trainers</h2>
+    <p class="font-italic text-muted mb-4">These people you are seeing in the picture below are Uzbek Sport trainers for all sports in Uzbekistan.</p>
+
+    <!-- PRODUCTS SECTION -->
+    <div class="row" style="margin-left: 3%;">
+        {% for gallery in galleries %}
+        <div class="col-md-3 m-6"><br>
+            <div class="card">
+                <a href="{% url 'trainers' %}"><img src="{{gallery.picture.url}}" class="card-img-top" alt="Uzb Trainers Photos"></a>
+                <div class="card-body">
+                    <div id="{{gallery.id}}" class="card-title text-danger">
+                        <h5><a href="{% url 'trainers' %}" class="text-danger">{{gallery.title}}</a></h5>
+                        <b class="text-dark">{{gallery.profession}}</b>
+                    </div>
+                    <div class="card-text text-secondary">
+                        {{gallery.date_posted | date:"F d, Y H:i"}}
+                    </div>
+                    <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fab fa-instagram"></i></a></li>
+                        <li class="list-inline-item m-0"><a href="#" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

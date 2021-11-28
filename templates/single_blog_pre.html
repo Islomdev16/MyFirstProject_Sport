@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-11">
+            <article>
+                <header class="mb-4">
+                    <h2 class="fw-bolder mb-1">Achievements in high sports</h2>
+                    <div class="text-muted fst-italic mb-2"><samp>Posted on <u> November 10, 2021 </u> by <u>admin</u></samp></div>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Karate</a>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Boxing</a>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Weightlifting</a>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">#MMA</a>
+                </header>
+                <section class="mb-5">
+                    <i class="fs-5 mb-4 text-secondary" style="letter-spacing: 1px; word-spacing: 5px;line-height: 2;">
+                        It is known that on November 9 this year, the Presidential Decree "On measures to radically improve the system of public administration in the field of physical culture and sports" was adopted.
+                        In accordance with the decree, the Ministry of Physical Culture and Sports of the Republic of Uzbekistan was established on the basis of the former State Committee and its territorial divisions, and its tasks and powers were expanded. began to give its first results.
+                    </i>
+                </section>
+                <figure class="mb-4"><img class="img-fluid rounded" src="{% static 'images/blog_27.jpg' %}" width="650" alt="" /></figure>
+                <section class="mb-5">
+                    <i class="fs-5 mb-4 text-secondary" style="letter-spacing: 1px; word-spacing: 5px;line-height: 2;">
+                        On September 20, President of the Republic of Uzbekistan Shavkat Mirziyoyev held a meeting on the development of physical culture and sports.
+
+                        The press service of the President of Uzbekistan reports.
+
+                        It is known that on March 5 this year, the President issued a decree "On measures to radically improve the system of public administration in the field of physical culture and sports." In accordance with the decree, the Ministry of Physical Culture and Sports of the Republic of Uzbekistan was established on the basis of the former State Committee and its territorial divisions, and its functions and powers were expanded.
+
+                        A new system for improving the selection of athletes has been introduced, and it is beginning to show results.
+
+                        At the Asian Games in Indonesia in August-September, our athletes won 21 gold, 24 silver and 25 bronze medals - a total of 70 medals. The fact that our country took the 5th place in the number of gold medals was the best result in the history of Uzbek sports.
+
+                        - We are proud of our athletes who have made a significant contribution to the prestige and prestige of Uzbekistan in the international sports arena. At the same time, we should not limit ourselves to the achievements in higher sports, but also pay more attention to mass sports, - said Shavkat Mirziyoyev.
+
+                        The meeting identified important tasks for the further development of physical culture and sports.
+                    </i><br><br>
+
+                    <video width="720" height="420" controls>
+                        <source src="{% static 'prezident_sport.mp4' %}" type="video/mp4">
+                        <source src="movie.ogg" type="video/ogg">
+                    </video><br><br>
+
+                    <i class="fs-5 mb-4 text-secondary" style="letter-spacing: 1px; word-spacing: 5px;line-height: 2;">
+
+                        It was noted that physical culture and mass sports, especially among young people, are not well organized, and the use of sports facilities in educational institutions for people of all ages outside of school hours is not organized.
+
+                        In addition, it is necessary to establish preferential sports centers to attract the population to mass sports on the basis of vacant private facilities.
+
+                        Therefore, the Ministry of Physical Culture and Sports together with the Youth Union and relevant ministries should take organizational measures to open sports facilities in educational institutions and sports sections in vacant facilities. Tasks were given to reward the winners with paid prizes at the expense of the Youth Union.
+
+                        In order to attract the population, especially young people, to sports, the task was set to introduce the Alpomish and Barchinoy tests in the form of competitions and to award them with three levels of badges.
+
+                        It was noted that mass physical education and gymnastics classes in enterprises, educational institutions and parks have been neglected. In order to promote the health benefits of such exercises, it was emphasized that regular shows and social videos should be produced and broadcast on television.
+
+                        - It is necessary to develop a five-year national concept for the promotion of sports in our country. Involving the population in regular physical activity and a healthy lifestyle, thereby preventing diseases and prolonging people's lives, should be the main direction and result of the concept, - said the President.
+
+                        The meeting criticized the federations for failing to perform well in international competitions in equestrian sports, swimming, fencing, archery and team sports due to poor performance. Therefore, the Olympic training centers in Samarkand, Jizzakh, Kashkadarya, Namangan and Tashkent regions were commissioned by 2020, and instructions were given to apply the Chinese experience, ie to establish a system of targeted training of athletes with permanent residence in the center.
+
+                        Officials were instructed to critically study the activities of all sports federations, to radically improve their work, especially in the field of selection, and to increase the responsibility of the leadership.
+
+                        There was a shortage of qualified coaches, especially in winter sports. The Ministry of Physical Culture and Sports has been tasked with improving the training of coaches and simplifying the licensing mechanism.
+
+                        Attention was also paid to the construction of children's sports facilities, the use of modern energy-saving technologies in construction. This year, 362 billion soums will be spent on the construction and commissioning of 56 sports facilities at the expense of the Fund for Physical Culture and Sports. However, as of September 10, only 113 billion soums worth of construction and installation work had been completed. Construction works in Syrdarya, Navoi, Tashkent regions and Tashkent city are lagging behind.
+
+                        Relevant ministries and organizations have been instructed to complete the construction and repair of sports facilities in a timely manner, to form a targeted program of the Fund for the Development of Physical Culture and Sports for 2019.
+
+                        Preparations for the 2020 Olympic and Paralympic Games in Tokyo were also discussed at the meeting. Tasks have been set to strengthen the training of Uzbek athletes to obtain a large number of licenses and participate in them.
+
+                        The reports of the officials on overcoming the problems in the field, wide coverage of the population in mass sports, further development of professional sports were heard.
+                    </i>
+                </section>
+            </article>
+            <hr class="my-1"
+        </div>
+    </div>
+</div><br><br><br>
+
+<div class="container">
+    <h1>Recommended Blo<span class="text-danger">gs</span></h1>
+    <div class="row gx-4 gx-lg-5 bg-light p-4">
+        {% for latest_blog in latest_blogs %}
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <a href="#!"><img class="card-img-top" src="{{latest_blog.image.url}}" alt="..." /></a>
+                <div class="card-body">
+                    <b class="small text-muted">{{latest_blog.created_at | date:'F d, Y'}}</b>
+                    <h5 class="card-title">{{latest_blog.title}}</h5>
+                    <p class="card-text">{{latest_blog.desc | truncatewords:20}}</p>
+                    <a href="{% url 'blog' %}" class="btn btn-outline-info btn-medium">Visit more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

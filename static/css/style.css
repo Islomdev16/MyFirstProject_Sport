@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Poppins:wght@100;300;400;500&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+#nav {
+    width: 100%;
+    height: 75px;
+    background-color: #456d96;
+    line-height: 75px;
+    padding: 0px 80px;
+}
+
+#nav .logop {
+    float: left;
+}
+
+#nav .logop p {
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+#nav ul {
+    float: right;
+}
+
+#nav ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+#nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 0px 20px;
+}
+
+#nav ul li a:hover {
+    color: #000000;
+}
+
+#nav ul .activing {
+    color: #000000;
+}
+
+.checkbtn {
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    float: right;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media screen and (max-width: 990px) {
+    #nav {
+        padding: 0px 50px;
+    }
+    .checkbtn {
+        display: block;
+    }
+    #nav .logop p {
+        font-size: 30px;
+    }
+    #nav ul {
+        width: 100%;
+        height: 100%;
+        background-color: #546372;
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        text-align: center;
+        transition: 0.4s ease;
+    }
+    #nav ul li {
+        display: block;
+        margin: 60px 0px;
+        line-height: 20px;
+    }
+    #check:checked~ul {
+        left: 0;
+    }
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.heading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: .01rem;
+    background: gray;
+    z-index: -1;
+}
+
+.heading span {
+    font-size: 3rem;
+    padding: .4rem 3rem;
+    color: var(--white);
+    background: skyblue;
+    border: var(--border);
+}
+
+
+/* Register Start Section */
+
+.card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('/static/images/log_1.png');
+    background-size: cover;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+#google {
+    color: white !important;
+    background-color: #ea4335;
+}
+
+#facebook {
+    color: white !important;
+    background-color: #3b5998;
+}
+
+
+/* Login Start Section */
+
+#logcon {
+    background-image: url('/static/images/login_bac_2.jpg');
+    /* background: #000000;
+    background: linear-gradient(to right, gray, #000000); */
+}
+
+#lgoogle {
+    color: white !important;
+    background-color: #ea4335;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+#lfacebook {
+    color: white !important;
+    background-color: #3b5998;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+
+/* Gallery Section Codes */
+
+body {
+    min-height: 100vh;
+    background: #fafafa;
+}
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+
+/* About Page Section */
+
+
+#imggal:hover{
+  opacity: 0.4;
+}

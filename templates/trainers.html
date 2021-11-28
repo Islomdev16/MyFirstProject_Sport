@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="container">
+    <div class="bg-light p-3">
+        <h1 class="font-weight-bold" style="margin-left: 30%;">Our Experienced Train<span class="text-danger">ers</span></h1>
+        <hr class="my-1" /><br>
+    </div><br><br>
+
+    {% for trainer in trainers %}
+    <div class="row g-0 bg-light position-relative">
+        <div class="col-md-6 mb-md-0 p-md-4">
+            <img src="{{trainer.picture.url}}" class="w-100" alt="Sport_trainer_1" height="260">
+        </div>
+        <div class="col-md-6 p-4 ps-md-0">
+            <h4 class="mt-0 text-primary" style="text-shadow: 1px 3px brown;">{{trainer.title}}</h4>
+            <p class="text-secondary" style="text-shadow: 1px 1px black;">{{trainer.text}}</p><hr>
+            <span class="text-info">Posted on: &nbsp;&nbsp;</span><b><mark><u>{{trainer.date_posted | date:"F d, Y H:i"}}</u></mark></b>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</div><br><br>
+
+{% endblock content %}

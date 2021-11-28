@@ -1,0 +1,476 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Blog</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="{% static 'news.css' %}">
+    <link rel="stylesheet" href="{% static 'comment.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Bootstrap Links Collection -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mediumish.css' %}" rel="stylesheet">
+
+
+
+    <!-- Slick Slider Section Links -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+
+</head>
+
+<body onload="Windows()">
+
+    <nav id="nav">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa fa-bars"></i>
+        </label>
+        <div class="logop">
+            <p><a href="{% url 'home' %}" style="text-decoration: none;"><span class="text-danger">s</span><i class="text-light">ports<sup style="font-size: 70%;">&trade;</sup></i></a></p>
+            <!-- search section -->
+            <form action="{% url 'search_blog' %}" method="POST" class="d-flex" style="margin-top: 7%;">
+                {% csrf_token %}
+                <input type="search" name="search_blog" class="form-control m-1 text-secondary" placeholder="Search for sports ..." style="width:70%;">
+                <button class="btn btn-primary m-1" type="submit"><i class="fa fa-search "></i></i></button>
+            </form>
+        </div>
+
+        <ul>
+            <li><a href="{% url 'home' %}" class="activing font-weight-bold text-danger">home</a></li>
+            <li><a href="{% url 'about' %}" class="font-weight-bold">about</a></li>
+            <li><a href="{% url 'gallery' %}" class="font-weight-bold">gallery</a></li>
+            <li><a href="{% url 'trainers' %}" class="font-weight-bold">trainers</a></li>
+            <li><a href="{% url 'blog' %}" class="font-weight-bold">blog</a></li>
+            <li><a href="{% url 'news' %} " class="mr-5 font-weight-bold">news</a></li>
+
+            <li>
+                {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="font-weight-bold btn-warning btn-lg text-light" style="border-radius: 10px;">Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-success font-weight-bold m-2 text-light" style="border-radius: 10px;">Logout</a>
+                <a href="#" class="btn btn-danger text-light font-weight-bold" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                <!-- else section -->
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-dark m-2 font-weight-bold text-light" style="border-radius: 10px;">Sign In</a>
+                <a href="{% url 'register' %}" class="btn btn-success font-weight-bold text-light" style="border-radius: 10px;">Register</a>
+                <a href="#" class="btn btn-danger text-light font-weight-bold" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                <!-- endif section -->
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+    <!-- BREADCRUMBS CODES SECTION START -->
+
+    <nav class="navbar navbar-expand-lg navbar-light m-2" style="width: 45%;">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-danger" style="text-decoration: none;"><b>Home</b></a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'about' %}" class="text-secondary" style="text-decoration: none;">About</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'gallery' %}" class="text-secondary" style="text-decoration: none;">Gallery</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'trainers' %}" class="text-secondary" style="text-decoration: none;">Trainers</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'blog' %}" class="text-secondary" style="text-decoration: none;">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'news' %}" class="text-secondary" style="text-decoration: none;">News</a></li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMBS CODES SECTION ENDING -->
+
+
+
+    <div class="container-fluid">
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+        </svg>
+
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:" style="margin-left: 20%;"><use xlink:href="#info-fill"/></svg>
+            <div>
+                <b>Hey there.</b><span> Welcome to our all gathered sport organization official site. <a href="{% url 'register' %}" class="text-danger" style="text-decoration: none;"> Sign Up</a> here!</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="margin-left: 35%;"></button>
+        </div>
+
+    </div>
+
+    <!-- Single News Start-->
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-11">
+                <!-- Post content-->
+                <article>
+                    <!-- Post header-->
+                    <header class="mb-4">
+                        <!-- Post title-->
+                        <h2 class="fw-bolder mb-1">{{blog.title}}</h1>
+                        <!-- Post meta content-->
+                        <div class="text-muted fst-italic mb-2"><samp>Posted on <u> {{blog.created_at | date:'F d, Y'}}</u> by <u>{{blog.user}}</u></samp></div>
+                        <!-- Post categories-->
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Karate</a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Boxing</a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Weightlifting</a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">#MMA</a>
+                    </header>
+                    <!-- Preview image figure-->
+                    <figure class="mb-4"><img class="img-fluid rounded" src="{{blog.image.url}}" width="850rem" alt="image_of_blog" /></figure>
+                    <!-- Post content-->
+                    <section class="mb-5" style='text-indent: 55px;'>
+                        <i class="fs-5 mb-4 text-secondary" style="letter-spacing: 1px; word-spacing: 5px;line-height: 2.2;">{{blog.desc}}</i>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3 mb-2" style='margin-left: 13%;'>
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="p-3">
+                    <h2>Comments ({{comments_count}})</h2>
+                    <hr><br>
+                    <div class="container mt-3">
+                        {% if request.user.is_authenticated %}
+                            <form action="#" method='POST'>
+                                <div class="mb-3 mt-3">
+                                    <label for="Comment" class="form-label" style="font-size: 13px;">Comments :</label>
+                                    {% csrf_token %}
+                                    {{form | crispy}}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Blog Comment</button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'register' %}">
+                                <div class="mb-3 mt-3">
+                                    <label for="Comment" class="form-label" style="font-size: 13px;">Comments :</label>
+                                    {% csrf_token %}
+                                    {{form | crispy}}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Blog Comment</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="mt-2">
+                {% for comment in comments %}
+                    <div class="d-flex flex-row p-3"> <img src="{{comment.author.profile.image.url}}" width="55" height="55" class="rounded-circle mr-4">
+                        <div class="w-100">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-row align-items-center"> <span class="mr-2">{{comment.author}}</span> <small class="c-badge">Top Comment</small> </div> <small>{{comment.created_on | date:'j'}}h ago</small>
+                            </div>
+                            <p class="text-justify comment-text mb-0">{{comment.content}}</p>
+                            <div class="d-flex flex-row user-feed">
+                                <form method="POST" action="{% url 'comment-like' blog.pk comment.pk %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="comment_like" value="{{request.path}}">
+                                    <button class="" style='border: 0px solid red;' type="submit">
+                                        <i class="far fa-thumbs-up" style="font-size: 20px;"><span>{{comment.likes.all.count}}</span></i>
+                                    </button>
+                                </form>
+                                <form method="POST" action="{% url 'comment-dislike' blog.pk comment.pk %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="comment_dislike" value="{{request.path}}">
+                                    <button class="ml-3" style='border: 0px solid red;' type="submit">
+                                        <i class="far fa-thumbs-down" style="font-size: 20px;"><span>{{comment.dislikes.all.count}}</span></i>
+                                    </button>
+                                </form>
+                                <a href="#" class="ml-3">Reply</a>
+                                {% if request.user == comment.author %}
+                                    <a href="#" class="text-dark ml-2"><i class="fas fa-trash ml-2" style="font-size: 20px;"></i></a>
+                                {% endif %}
+                            </div><br><hr>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+    <div class="container">
+        <h1>Recommended Blo<span class="text-danger">gs</span></h1>
+        <div class="row gx-4 gx-lg-5 bg-light p-4">
+            {% for latest_blog in latest_blogs %}
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{{latest_blog.image.url}}" alt="Recommended blogs"/>
+                    <div class="card-body">
+                        <b class="small text-muted">{{latest_blog.created_at | date:'F d, Y'}}</b>
+                        <h5 class="card-title">{{latest_blog.title}}</h3>
+                        <p class="card-text">{{latest_blog.desc | truncatewords:20}}</p>
+                        <a href="{% url 'blog' %}" class="btn btn-outline-info btn-medium">Visit more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- News Large Ending Point Section  -->
+    <br>
+
+    <div class="container-fluid">
+        <h1 class="heading bg-light"><span style="border-radius: 10px;" class="bg-info">Useful Links</span></h1>
+        <br>
+
+
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active bg-dark"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1" class="bg-dark"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row" style="margin-left: 5%;">
+                        <div class="col">
+                            <a href="http://ufa.uz/?lang=en"><img src="{% static 'images/fot_logo.jpeg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://kurash-ika.org"><img src="{% static 'images/fot_logo1.jpg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://president.uz"><img src="{% static 'images/fot_logo2.jpg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://www.unicef.org/uzbekistan/en/topics/youth"><img src="{% static 'images/fot_logo3.png' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://www.uzairways.com/uz"><img src="{% static 'images/fot_logo4.png' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="http://olympic.uz/"><img src="{% static 'images/fot_logolymp.jpeg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col" style="margin-right: 6%;">
+                            <a href="https://uzbektourism.uz/"><img src="{% static 'images/fot_uzbtour.jpeg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row" style="margin-left: 5%;">
+                        <div class="col">
+                            <a href="http://ufa.uz/?lang=en"><img src="{% static 'images/fot_logo.jpeg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://kurash-ika.org"><img src="{% static 'images/fot_logo1.jpg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://president.uz"><img src="{% static 'images/fot_logo2.jpg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://www.unicef.org/uzbekistan/en/topics/youth"><img src="{% static 'images/fot_logo3.png' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="https://www.uzairways.com/uz"><img src="{% static 'images/fot_logo4.png' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col">
+                            <a href="http://olympic.uz/"><img src="{% static 'images/fot_logolymp.jpeg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                        <div class="col" style="margin-right: 6%;">
+                            <a href="https://uzbektourism.uz/"><img src="{% static 'images/fot_uzbtour.jpeg' %}" class="d-block w-100" alt="brand sliders"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- Left and right controls/icons -->
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <!-- Footer Section -->
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-dark text-muted">
+        <!-- Section: Social media -->
+
+        <br>
+        <div>
+            <h2 class="text-light"><u>FOLLOW OUR MISSIONS</u></h2>
+        </div>
+
+
+        <section class="d-flex justify-content-center p-4 border-bottom">
+            <!-- Right -->
+
+            <a class="btn btn-primary btn-floating m-1" href="https://www.facebook.com/sportsuz" role="button"><i class="fab fa-facebook-f"></i
+      ></a>
+
+            <!-- Google -->
+            <a class="btn btn-warning btn-floating m-1" href="https://www.goldenpages.uz/en/rubrics/?Id=1667" role="button"><i class="fab fa-google"></i
+      ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-danger btn-floating m-1" href="https://www.instagram.com/uzsport_no1/" role="button"><i class="fab fa-instagram"></i
+      ></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-info btn-floating m-1" href="https://www.linkedin.com/groups/8986747/" role="button"><i class="fab fa-linkedin-in"></i
+      ></a>
+
+            <!-- Github -->
+            <a class="btn btn-secondary btn-floating m-1" href="https://github.com/Islom16" role="button"><i class="fab fa-github"></i
+      ></a>
+
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i><span class="text-light ml-2">Sport Organization</span>
+                        </h6>
+                        <p class="text-secondary">
+                            Promotion of Olympic ideas in Uzbekistan, acquaintance of people with the achievements of athletes of the Republic of Uzbekistan, development of Olympic education;
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4 text-light">
+                            Navigation
+                        </h6>
+                        <p>
+                            <a href="{% url 'home' %}" class="text-secondary">Home</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'about' %}" class="text-secondary">About</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'gallery' %}" class="text-secondary">Gallery</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'blog' %}" class="text-secondary">Blog</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'trainers' %}" class="text-secondary">Trainers</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'news' %}" class="text-secondary">News</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4 text-light">
+                            Useful Information
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-secondary">Pricing</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-secondary">Settings</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-secondary">Orders</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-secondary">Help</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4 text-light">
+                            Contact
+                        </h6>
+                        <p class="text-secondary"><i class="fas fa-home me-3"></i> Tashkent, NY 12, UZB</p>
+                        <p class="text-secondary">
+                            <i class="fas fa-envelope me-3"></i> sport12org@gmail.com
+                        </p>
+                        <p class="text-secondary"><i class="fas fa-phone me-3"></i> + 998 90 226 04 16</p>
+                        <p class="text-secondary"><i class="fas fa-print me-3"></i> + 78 585 46 21</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4 text-light" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright: BY SPORT ORGANIZATION | ALL RIGHTS ARE RESERVED
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+
+
+
+    <!-- Javascript Codes Section -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/main.js'}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+
+    <!-- Javascript Links -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
+
+    <!-- Javascript Slick Section -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+</body>
+
+</html>
