@@ -1,0 +1,120 @@
+#sec1 {
+    margin-bottom: 20px;
+}
+
+@media (min-width:576px) {
+    .card-columns.listfeaturedtag {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+#carda #cardaa {
+    margin-bottom: 20px;
+}
+
+.listfeaturedtag .wrapthumbnail {
+    height: 258px;
+    flex: 0 0 auto;
+}
+
+.listfeaturedtag #cardaa {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    height: 260px;
+    padding-left: 0;
+    margin-bottom: 15px;
+}
+
+.listfeaturedtag .thumbnail {
+    background-size: cover;
+    height: 100%;
+    display: block;
+    background-position: 38% 22% !important;
+    background-origin: border-box!important;
+    border-top-left-radius: 2px;
+}
+
+.listfeaturedtag .card-block {
+    padding-left: 0;
+}
+
+.listfeaturedtag #heading22.card-title,
+.listrecent #heading22.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.listfeaturedtag #heading22.card-title #alink,
+.listrecent #heading22.card-title #alink {
+    color: rgba(0, 0, 0, .8);
+}
+
+.listfeaturedtag #heading22.card-title #alink:hover,
+.listrecent #heading22.card-title #alink:hover {
+    color: rgba(0, 0, 0, .6);
+    text-decoration: none;
+}
+
+.listfeaturedtag #heading44.card-text,
+.listrecent #heading44.card-text {
+    color: rgba(0, 0, 0, .44);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+.listfeaturedtag .wrapfooter {
+    position: absolute;
+    bottom: 20px;
+    font-size: 12px;
+    display: block;
+    width: 85%;
+}
+
+.listrecent .wrapfooter {
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.author-meta {
+    flex: 1 1 auto;
+    white-space: nowrap!important;
+    text-overflow: ellipsis!important;
+    overflow: hidden!important;
+}
+
+span.post-name,
+span.post-date,
+span.author-meta {
+    display: inline-block;
+}
+
+span.post-date,
+span.post-read {
+    color: rgba(0, 0, 0, .44);
+}
+
+span.post-read-more {
+    align-items: center;
+    display: inline-block;
+    float: right;
+    margin-top: 8px;
+}
+
+span.post-read-more #alink {
+    color: rgba(0, 0, 0, .44);
+}
+
+span.post-name #alink,
+span.post-read-more #alink:hover {
+    color: rgba(0, 0, 0, .8);
+}
+
+.dot:after {
+    content: "·";
+    margin-left: 3px;
+    margin-right: 3px;
+}
