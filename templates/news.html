@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Blog</title>
+    <title>Sports Blog | News</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <link rel="stylesheet" href="{% static 'news.css' %}">
@@ -34,14 +34,14 @@
         <div class="logop">
             <p><a href="{% url 'home' %}" style="text-decoration: none;"><span class="text-danger">s</span><i class="text-light">ports<sup style="font-size: 70%;">&trade;</sup></i></a></p>
             <!-- search section -->
-            <form action="{% url 'search_news' %}" method="POST" class="d-flex" style="margin-top: 7%;">
+            <form action="{% url 'search_news' %}" method="POST" class="d-flex" style="margin-top: 4%;">
                 {% csrf_token %}
                 <input type="search" name="search_news" class="form-control m-1 text-secondary" placeholder="Search for sports ..." style="width:70%;">
                 <button class="btn m-1" style="background-color: rgb(21, 113, 199);" type="submit"><i class="fa fa-search"></i></i></button>
             </form>
         </div>
 
-        <ul>
+        <ul style="margin-top:  -10%;">
             <li><a href="{% url 'home' %}" class="activing font-weight-bold text-danger">home</a></li>
             <li><a href="{% url 'about' %}" class="font-weight-bold">about</a></li>
             <li><a href="{% url 'gallery' %}" class="font-weight-bold">gallery</a></li>
@@ -51,35 +51,18 @@
 
             <li>
                 {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="font-weight-bold btn-warning btn-lg text-light" style="border-radius: 10px;">Profile</a>
-                <a href="{% url 'logout' %}" class="btn btn-success font-weight-bold m-2 text-light" style="border-radius: 10px;">Logout</a>
-                <a href="#" class="btn btn-danger font-weight-bold text-light" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                <a href="{% url 'profile' %}" class="btn text-light bg-success px-2"><i class="fa fa-user-circle" aria-hidden="true"></i> My Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-light text-dark">Logout</a>
+                <b class="btn btn-sm btn-info">Call Us <i class="fa fa-phone" aria-hidden="true"></i></b>
                 <!-- else section -->
                 {% else %}
-                <a href="{% url 'login' %}" class="btn btn-dark font-weight-bold m-2 text-light" style="border-radius: 10px;">Sign In</a>
-                <a href="{% url 'register' %}" class="btn btn-success font-weight-bold text-light " style="border-radius: 10px;">Register</a>
-                <a href="#" class="btn btn-danger font-weight-bold text-light" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                <i class="fa fa-user-plus text-light" aria-hidden="true"></i><a href="{% url 'login' %}" class="btn btn-link px-2 font-weight-bold text-light">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-success text-light">Join us now!</a>
+                <b class="btn btn-sm btn-info">Call Us <i class="fa fa-phone" aria-hidden="true"></i></b>
                 <!-- endif section -->
                 {% endif %}
             </li>
         </ul>
-    </nav>
-
-    <!-- BREADCRUMBS CODES SECTION START -->
-
-    <nav class="navbar navbar-expand-lg navbar-light m-2" style="width: 45%;">
-        <div>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-danger" style="text-decoration: none;"><b>Home</b></a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'about' %}" class="text-secondary" style="text-decoration: none;">About</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'gallery' %}" class="text-secondary" style="text-decoration: none;">Gallery</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'trainers' %}" class="text-secondary" style="text-decoration: none;">Trainers</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'blog' %}" class="text-secondary" style="text-decoration: none;">Blog</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'news' %}" class="text-secondary" style="text-decoration: none;">News</a></li>
-                </ol>
-            </nav>
-        </div>
     </nav>
 
     <div class="container-fluid">
@@ -88,14 +71,14 @@
               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
             </symbol>
         </svg>
-
-        <div class="alert alert-primary d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:" style="margin-left: 20%;"><use xlink:href="#info-fill"/></svg>
+        <div class="alert alert-primary d-flex align-items-center m-3" role="alert">
+            <svg class="bi flex-shrink-0 me-1" width="21" height="24" role="img" aria-label="Info:" style="margin-left: 20%;"><use xlink:href="#info-fill"/></svg>
             <div>
-                <b>Hey there.</b><span> Welcome to our all gathered sport organization official site. <a href="{% url 'register' %}" class="text-danger" style="text-decoration: none;"> Sign Up</a> here!</span>
+                <b>Hey there.</b><span> Welcome to our site. <a href="{% url 'register' %}" class="text-danger" style="text-decoration: none;"> Sign Up</a> here!</span>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="margin-left: 35%;"></button>
         </div>
+        {% block content %} {% endblock content %}
     </div>
 
     <!-- News Large Starting Point Section  -->

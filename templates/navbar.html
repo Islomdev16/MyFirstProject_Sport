@@ -13,21 +13,18 @@
 
 <body>
     <nav id="nav">
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fa fa-bars"></i>
-        </label>
         <div class="logop">
             <p><a href="{% url 'home' %}" style="text-decoration: none;"><span class="text-danger">s</span><i class="text-light">ports<sup style="font-size: 70%;">&trade;</sup></i></a></p>
+            
             <!-- search section -->
-            <form action="{% url 'search_blog' %}" method="POST" class="d-flex" style="margin-top: 7%;">
+            <form action="{% url 'search_blog' %}" method="POST" class="d-flex" style="margin-top: 4%;">
                 {% csrf_token %}
-                <input type="search" name="search_blog" class="form-control m-1 text-secondary" placeholder="Search for sports ..." style="width:70%;">
-                <button class="btn btn-primary m-1" type="submit"><i class="fa fa-search "></i></i></button>
+                <input type="search" name="search_blog" class="form-control text-secondary" placeholder="Search for sports ..." style="width:70%;">
+                <button class="btn btn-primary ml-1" type="submit"><i class="fa fa-search "></i></i></button>
             </form>
         </div>
 
-        <ul>
+        <ul style="margin-top: -9.42%;">
             <li><a href="{% url 'home' %}" class="activing font-weight-bold text-danger">home</a></li>
             <li><a href="{% url 'about' %}" class="font-weight-bold">about</a></li>
             <li><a href="{% url 'gallery' %}" class="font-weight-bold">gallery</a></li>
@@ -37,16 +34,19 @@
 
             <li>
                 {% if user.is_authenticated %}
-                  <a href="{% url 'profile' %}" class="font-weight-bold btn-warning btn-lg text-light" style="border-radius: 10px;">Profile</a>
-                  <a href="{% url 'logout' %}" class="btn btn-success m-2 text-light font-weight-bold" style="border-radius: 10px;">Logout</a>
-                  <a href="#" class="btn btn-danger text-light font-weight-bold" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                <a href="{% url 'profile' %}" class="btn text-light bg-success px-2"><i class="fa fa-user-circle" aria-hidden="true"></i> My Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-light text-dark">Logout</a>
+                <b class="btn btn-sm btn-info">Call Us <i class="fa fa-phone" aria-hidden="true"></i></b>
+                <!-- else section -->
                 {% else %}
-                  <a href="{% url 'login' %}" class="btn btn-dark m-2 text-light" style="border-radius: 10px;">Sign In</a>
-                  <a href="{% url 'register' %}" class="btn btn-success text-light " style="border-radius: 10px;">Register</a>
-                  <a href="#" class="btn btn-danger text-light" style="border-radius: 10px; margin-left: 8px;">lang</a>
+                <a href="{% url 'login' %}" class="btn btn-link px-2 font-weight-bold text-light"><i class="fa fa-user-plus text-light" aria-hidden="true" style="margin-right:6%;"></i>Login</a>
+                <a href="{% url 'register' %}" class="btn btn-success text-light">Join us now!</a>
+                <b class="btn btn-sm btn-info">Call Us <i class="fa fa-phone" aria-hidden="true"></i></b>
+                <!-- endif section -->
                 {% endif %}
             </li>
         </ul>
+        
     </nav>
 
 </body>
